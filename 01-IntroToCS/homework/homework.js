@@ -2,13 +2,9 @@
 
 function BinarioADecimal(num) {
   // tu codigo aca
-// de binario a decimales
-    let numero = num.split('');
-    let resultado = 0;
-    let exponente = numero.length - 1;
-    for (let i = 0; i < numero.length; i++) {
-        resultado += numero[i] * Math.pow(2, exponente);
-        exponente--;
+let resultado = 0;
+    for (let i = 0; i < num.length; i++) {
+       resultado += num[i] * (2 ** (num.length - 1 - i));
     }
     return resultado;
 }
@@ -26,8 +22,8 @@ function DecimalABinario(num) {
 
 }
 
-console.log(BinarioADecimal('10011')); 
-console.log(DecimalABinario(19));
+console.log(BinarioADecimal('1101')); 
+console.log(DecimalABinario());
 
 module.exports = {
   BinarioADecimal,
