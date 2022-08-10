@@ -19,10 +19,9 @@ function counter() {
   otroContador()      // 2
   otroContador()      // 3
    */
-  var contador = 0;
+  var contador = 1;
   return function () {
-    contador++;
-    return contador;
+    return contador++;
   }
 }
 
@@ -62,6 +61,8 @@ return function (arg) {
   return objeto[arg];
 }
 }
+
+
 
 // Bind
 
@@ -103,11 +104,11 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos = crearCadena.bind(this, "*", "*");
+let textoAsteriscos = crearCadena.bind( 'jojo', "*", "*");
 
-let textoGuiones = crearCadena.bind(this, "-", "-");
+let textoGuiones = crearCadena.bind('jojo',"-", "-");
 
-let textoUnderscore = crearCadena.bind(this, "_", "_");
+let textoUnderscore = crearCadena.bind('jojo', "_", "_");
 
 // let textoAsteriscos = function (cadena) {
 //   return crearCadena("*", "*", cadena);
@@ -133,3 +134,26 @@ module.exports = {
   textoGuiones,
   textoUnderscore,
 };
+
+
+
+//*
+//?
+//!
+//todo:
+//rojo:
+// verde: 
+// fuxia: 
+// agua:
+// celeste:
+//removed Hola
+//added Hola
+/** 
+* @Hola 
+* *Hola
+* ?Hola
+* !Hola
+* todo: Hola
+* celeste: Hola
+* _Hola
+*/

@@ -55,6 +55,8 @@ triangle.prototype.getPerimeter = function () {
     return this.a + this.b + this.c;
 }
 
+
+
 > var t = new Triangle(1, 2, 3);
 > t instanceof Triangle
 // true
@@ -80,6 +82,7 @@ circle.prototype.getPerimeter = function () {
     return 2 * Math.PI * this.radius;
 }
 
+
 > var c = new Circle(2);
 > c instanceof Circle
 // true
@@ -93,3 +96,21 @@ circle.prototype.getPerimeter = function () {
 
 * Creá una última `shape` llamada `Square`.
 * Agregá el método `getArea` de todas las `shape`s.
+
+//* 
+
+```javascript
+
+function square(side) {
+    this.side = side;
+    this.type = "Square";
+    }
+    square.prototype = shape;
+    square.prototype.getArea = function () {
+    return this.side * this.side;
+    }
+
+    var cuadrado = new square(22);
+    console.log(cuadrado.getArea() + ' area');
+
+
