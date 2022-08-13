@@ -19,11 +19,12 @@ function counter() {
   otroContador()      // 2
   otroContador()      // 3
    */
-  var contador = 1;
+  var contador = 0;
   return function () {
-    return contador++;
+    return ++ contador;
   }
 }
+
 
 function cacheFunction(cb) {
   /*
@@ -53,14 +54,14 @@ function cacheFunction(cb) {
   resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
-const objeto = {};
-return function (arg) {
-  if (!objeto.hasOwnProperty(arg)) {
-    objeto[arg] = cb(arg);
+  const cache = {};
+  return function (arg) {
+    if ( !cache.hasOwnProperty(arg)) {
+      cache[arg] = cb(arg);
+    }
+    return cache[arg];
   }
-  return objeto[arg];
-}
-}
+  }
 
 
 

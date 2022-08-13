@@ -20,22 +20,17 @@ intentar definir funciones que logren los mismos resultados pero de manera itera
 */
 
 function nFactorial(n) {
-  if (n === 0) {
-    return 1;
-  }else {
-    return n * nFactorial(n - 1);
-  }
+
+    return n < 2 ? n :n * nFactorial(n - 1);
 }
+//funcion flecha para llamar a la funcion nFactorial
+// let nFactorial = n => n < 2 ? n :n * nFactorial(n - 1);
 
 function nFibonacci(n) {
-  if (n === 0) {
-    return 0;
-  }else if (n === 1) {
-    return 1;
-  }else {
-    return nFibonacci(n - 1) + nFibonacci(n - 2);
+    return n < 2 ? n :nFibonacci(n - 1) + nFibonacci(n - 2);
   }
-}
+//funcion flecha para llamar a la funcion nFibonacci
+// let nFibonacci = n => n < 2 ? n :nFibonacci(n - 1) + nFibonacci(n - 2);
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que 
@@ -47,8 +42,28 @@ ingresa es el primero que se quita. Definir los siguientes métodos:
 Pueden utilizar class o función constructora.
 */
 
+class Queue {
+  constructor() {
+    this.queue = [];
+  }
+
+  enqueue(value) {
+    this.queue.push(value);
+  }
+
+  dequeue() {
+    return this.queue.shift();
+  }
+
+  size() {
+    return this.queue.length;
+  }
+}
+
+
 function Queue() {
   this.queue = [];
+
   this.enqueue = function(value) {
     this.queue.push(value);
   }
