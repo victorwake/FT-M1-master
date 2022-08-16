@@ -53,29 +53,31 @@ class Queue {
 
   dequeue() {
     return this.queue.shift();
+//shift elimina el primer elemento de la cola y devuelve el valor 
+// eliminado y mueve el resto de los valores de la cola hacia el indice 0
   }
-
+  
   size() {
     return this.queue.length;
   }
 }
 
 
-function Queue() {
-  this.queue = [];
+// function Queue() {
+//   this.queue = [];
 
-  this.enqueue = function(value) {
-    this.queue.push(value);
-  }
-  this.dequeue = function() {
-    return this.queue.shift();
-    //shift elimina el primer elemento de la cola y devuelve el valor 
-    // eliminado y mueve el resto de los valores de la cola hacia el indice 0
-  }
-  this.size = function() {
-    return this.queue.length;
-  } 
-}
+//   this.enqueue = function(value) {
+//     this.queue.push(value);
+//   }
+//   this.dequeue = function() {
+//     return this.queue.shift();
+//     //shift elimina el primer elemento de la cola y devuelve el valor 
+//     // eliminado y mueve el resto de los valores de la cola hacia el indice 0
+//   }
+//   this.size = function() {
+//     return this.queue.length;
+//   } 
+// }
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------

@@ -15,44 +15,223 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
   En caso de que la búsqueda no arroje resultados, search debe retornar null.
 */
 
-function LinkedList() {
-  this.head = null;
-  this.cola = null;
-  this.add = function(value) {
-    var newNode = new Node(value);
-    if (this.head === null) {
-      this.head = newNode;
-      this.cola = newNode;
-    }else {
-      this.cola.next = newNode;
-      this.cola = newNode;
+class LinkedList{
+  constructor(){
+    this.head = null;
+    this.tail = null;
+  }
+
+  add(value){
+    const node = new Node(value);
+    if(!this.head){ 
+      this.head = node;
+      this.tail = node;
+    }else{
+      this.tail.next = node;
+      this.tail = node;
     }
   }
-  this.remove = function() {
-    if (this.head === null) {
+
+  remove(){
+    if(!this.head){
       return null;
-    }else {
-      var removedNode = this.head;
-      this.head = this.head.next;
-      return removedNode.value;
+    }else if(this.head === this.tail){
+      const value = this.head.value;
+      this.head = null;
+      this.tail = null;
+      return value;
+    }else{
+      let current = this.head;
+      while(current.next !== this.tail){
+        current = current.next;
+      }
+      const value = this.tail.value;
+      this.tail = current;
+      this.tail.next = null;
+      return value;
     }
   }
-  this.search = function(value) {
-    var currentNode = this.head;
-    while (currentNode !== null) {
-      if (currentNode.value === value) {
-        return currentNode;
+
+  search(value){
+    let current = this.head;
+    while(current){
+      if(typeof value === "function" && value(current.value)){
+        return current.value;
+      }else if(current.value === value){
+        return current.value;
       }
-      currentNode = currentNode.next;
+      current = current.next;
     }
     return null;
   }
 }
 
-function Node(value) {
-  this.value = value;
-  this.next = null;
+
+class Node{
+  constructor(value){
+    this.value = value;
+    this.next = null;
+  }
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// function LinkedList() {
+
+//   this._length = 0;
+//   this.head = null;                                           
+// }
+
+// function Node(value) {
+
+//   this.value = value;
+//   this.next = null;
+// }
+
+// LinkedList.prototype.add = function (value ) {
+//   var nodo = new Node (value);      // Guardamos el nodo en una variable
+//   var nodoActual = this.head;       // Guardamos el nodo actual en una variable para no perder la referencia
+
+//   if (!nodoActual){                            // Si la lista esta vacia
+//     this.head = nodo;                   // Ponemos el nodo en la lista
+//     this._length++;                     // Aumantamos la longitud de la lista
+//     return nodo;                         // retornamos el nodo
+
+//   }
+
+//   if (nodoActual.next){                            // Si el nodo actual tiene un next que no es null
+//       nodoActual = nodoActual.next;      // Movemos el nodo actual a la siguiente posicion
+//   }
+
+// nodoActual.next = nodo;                   // insertamos el nuevo nodo en el next que tenga null
+// this._length++;                                 // Aumentamos la longitud de la lista
+// return nodo;                                      // Retornamos nodo
+
+// }
+
+// LinkedList.prototype.remove =  function ( ) {
+
+// //  - remove: elimina el último nodo de la lista y retorna su valor (tener en cuenta el caso particular de una lista de un solo nodo y de una lista vacía);
+  
+// var current = this.head;
+
+// if (this._length === 0) return null;
+
+// if ( this._length === 1 ) {
+//   let elementRemoved = this.head.value;
+//   this.head = null;
+//   this._length--;
+//   return elementRemoved;
+// }
+
+// while ( current.next.next){
+//   current = current.next;
+// }
+
+// let elementRemoved = current.next.value;
+// current.next = null;
+// this._length--;
+// return elementRemoved;
+// }
+
+
+
+// LinkedList.prototype.search = function ( value) {
+      
+//   let nodoActual = this.head;
+
+//   if ( !this.head){
+//     return null;
+//   }
+
+// // Si la busqueda conicide con un valor que pasaron como parametro
+
+// while ( nodoActual ) {
+
+//   if ( nodoActual.value === value ) return nodoActual.value;
+
+//   if ( typeof value === 'function'){
+//     if ( value(nodoActual.value)){
+//       return nodoActual.value;
+//     }
+// }
+// nodoActual = nodoActual.next;
+
+//   }
+//   return null;
+
+// }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// En forma de funcion
+
+// function LinkedList() {
+//   this.head = null;
+// }
+// function Node(value) {
+//   this.value = value;
+//   this.next = null;
+// }
+// LinkedList.prototype.add = function(data){
+//   let node = new Node(data);
+//   //node = {value: data, next: null}
+
+// let current = this.head;
+// if(!current){
+//   //if(!this.head)
+//   //if(this.head === null)
+//   //if(current.null)
+//   this.head = node;
+//   this._length++;
+//   return node;
+// }
+// while(current.next){
+//   // while(current.next !== null)
+//   current = current.next;
+// }
+// current.next = node;
+// this._length++;
+// return node;
+// }
+// //agr elim principio
+// //agr elim final
+// //agr elim medio según condicion
+// //agr elim un elemento en posicion x
+
+// LinkedList.prototype.remove = function(){
+//   //eliminar el ultimo nodo de la list
+//   //-> head -> null
+//   let current = this.head;
+//   if(current === null) return null;
+//   //if(this._length === 0) return null;
+//   else if(current && !current.next){
+//     let aux = current.value; //aux = 1
+//     this.head = null;
+//     this.length--;
+//     return aux; //1
+//   }
+// while(current.next.next){
+//   current = current.next;
+// }
+// let aux = current.next.value;
+// current.next = null;
+// this._length--;
+// return aux;
+// }
+// LinkedList.prototype.search = function(value){
+//   if(this.head === null) return null;
+//   let current = this.head;
+//   while(current){
+//     if(current.value === value) return current.value;
+//     else if (typeof value == 'function'){
+//       if(value(current.value)){
+//         return current.value;
+//       }
+//     }
+//     current = current.next;
+//   }
+//   return null;
+// };
+
 
 /*
 Implementar la clase HashTable.
@@ -81,55 +260,99 @@ hasKey, si ya hay algo en la tabla con el nombre 'instructora'; luego, invocando
 se almacenará el par clave-valor en un bucket específico (determinado al hashear la clave)
 */
 
-function HashTable() {
-  this.numBuckets = 35;
-  this.buckets = [];
-
-  this.hash = function(input) {
-    var total = 0;
-    for (var i = 0; i < input.length; i++) {
-      total += input.charCodeAt(i);
-    }
-    return total % this.numBuckets;
+class HashTable {
+  constructor() {
+    this.numBuckets = 35;
+    this.numBucketsArray = new Array(this.numBuckets);
   }
-
-  this.set = function(key, value) {
-    var index = this.hash(key);
-    if (this.buckets[index] === undefined) {
-      this.buckets[index] = [];
+  hash(key) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = (hash + key.charCodeAt(i)) % this.numBuckets;
     }
-    this.buckets[index].push({
-      key: key,
-      value: value
-    });
+    return hash;
   }
+  set(key, value) {
+    if (typeof key === "string") {
+      const address = this.hash(key);
 
-  this.get = function(key) {
-    var index = this.hash(key);
-    if (this.buckets[index] === undefined) {
-      return null;
+      if (!this.numBucketsArray[address]) {
+        this.numBucketsArray[address] = [];
+      }
+      const currentBucket = this.numBucketsArray[address];
+      if (currentBucket) {
+        for (let i = 0; i < currentBucket.length; i++) {
+          if (currentBucket[i][0] === key) {
+            return (currentBucket[i][1] = value);
+          }
+        }
+      }
+      this.numBucketsArray[address].push([key, value]);
+      return this.numBucketsArray[address];
+    } else {
+      throw new TypeError("Keys must be strings");
     }
-    for (var i = 0; i < this.buckets[index].length; i++) {
-      if (this.buckets[index][i].key === key) {
-        return this.buckets[index][i].value;
+  }
+  get(key) {
+    const address = this.hash(key);
+    const currentBucket = this.numBucketsArray[address];
+    if (currentBucket) {
+      for (let i = 0; i < currentBucket.length; i++) {
+        if (currentBucket[i][0] === key) {
+          return currentBucket[i][1];
+        }
       }
     }
-    return null;
+    return undefined;
   }
+  hasKey(key) {
+    let respuesta = this.get(key);
+    return respuesta ?  true : false;
   
-  this.hasKey = function(key) {
-    var index = this.hash(key);
-    if (this.buckets[index] === undefined) {
-      return false;
-    }
-    for (var i = 0; i < this.buckets[index].length; i++) {
-      if (this.buckets[index][i].key === key) {
-        return true;
-      }
-    }
-    return false;
+    //     let valorBoolean = false;
+    //   const address = this.hash(key);
+    //   const currentBucket = this.numBucketsArray[address];
+    //   for (let i = 0; i < currentBucket.length; i++) {
+    //     if (currentBucket[i][0] === key) {
+    //       valorBoolean = true;
+    //     }
+    //   }
+    //   return valorBoolean;
   }
 }
+
+// function HashTable() {
+//   this.numBuckets = 35;
+//   this.buckets = [];
+// }
+//   HashTable.prototype.hash =  function(key){
+//     let sum = 0;
+//     for (let i = 0; i < key.length; i++) {
+//       sum+=key.charCodeAt(i);      
+//     }
+//     return sum % this.numBuckets; //sum % 35
+//   };
+// HashTable.prototype.set = function(key, value){
+//   if(typeof key !== 'string') throw new TypeError('Keys must be strings');
+//   let i = this.hash(key); //donde guardarlo
+//   if(this.buckets[i] === undefined){   // Si el buckets en el indice esta vacio
+//     this.buckets[i] = {};              // Creamos un objeto en el indice
+//   }
+//   this.buckets[i][key] = value;    // Guardamos en el indice la llave y el valor
+//   // this.bucket = []
+//   //i = 3;
+//   // this.buckets[3] = [,,,{}]
+// };
+// HashTable.prototype.get = function(key){
+// let i = this.hash(key); // 3 // Llama al metodo hash para obtener el valor del indice
+// // this.buckets[3][hola] = [,,,{hola:value}]
+// return this.buckets[i][key];
+// };
+// HashTable.prototype.hasKey = function(key){
+//   let i = this.hash(key);
+//   return this.buckets[i].hasOwnProperty(key);
+// };
+
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
@@ -139,3 +362,4 @@ module.exports = {
   LinkedList,
   HashTable,
 };
+  
