@@ -21,7 +21,7 @@ intentar definir funciones que logren los mismos resultados pero de manera itera
 
 function nFactorial(n) {
 
-    return n < 2 ? n :n * nFactorial(n - 1);
+    return n <= 2 ? n :n * nFactorial(n - 1);
 }
 //funcion flecha para llamar a la funcion nFactorial
 // let nFactorial = n => n < 2 ? n :n * nFactorial(n - 1);
