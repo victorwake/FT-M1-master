@@ -34,7 +34,7 @@ class BinarySearchTree{
     this.value = value;
     this.left = null;
     this.right = null;
-    this.length = 0;
+    this.length = 1;
   }
 
   //size: retorna la cantidad total de nodos del árbol
